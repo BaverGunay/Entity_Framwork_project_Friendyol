@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FRİENDYOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="fatura">
+          <Key>
+            <PropertyRef Name="faturaID" />
+          </Key>
+          <Property Name="faturaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="siparisID" Type="int" />
+          <Property Name="firmaID" Type="int" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="firma_Bilgisi">
+          <Key>
+            <PropertyRef Name="firmaID" />
+          </Key>
+          <Property Name="firmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad_soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="kargo">
+          <Key>
+            <PropertyRef Name="kargoID" />
+          </Key>
+          <Property Name="kargoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kargoAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="kargoTEL" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="markaAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="ulke" Type="nvarchar" MaxLength="50" />
+          <Property Name="sehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_Admin" Type="int" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="adet" Type="int" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriID" Type="int" />
+          <Property Name="urunAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="markaID" Type="int" />
+          <Property Name="fiyat" Type="money" />
+          <Property Name="stok" Type="int" />
+          <Property Name="acıklama" Type="nvarchar(max)" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="yorumlar">
+          <Key>
+            <PropertyRef Name="yorumID" />
+          </Key>
+          <Property Name="yorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="siparisID" Type="int" />
+          <Property Name="yorum" Type="nvarchar(max)" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="is_flag" Type="tinyint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_firma_Bilgisi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_firma_Bilgisi">
+          <Key>
+            <PropertyRef Name="firmaID" />
+          </Key>
+          <Property Name="firmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad_soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_kargo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_kargo">
+          <Key>
+            <PropertyRef Name="kargoID" />
+          </Key>
+          <Property Name="kargoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kargoAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="kargoTEL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_kategori' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_marka' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="markaAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_musteri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="ulke" Type="nvarchar" MaxLength="50" />
+          <Property Name="sehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_Admin" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_siparis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="adet" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_urun' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriID" Type="int" />
+          <Property Name="urunAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="markaID" Type="int" />
+          <Property Name="fiyat" Type="money" />
+          <Property Name="stok" Type="int" />
+          <Property Name="acıklama" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.view_yorumlar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_yorumlar">
+          <Key>
+            <PropertyRef Name="yorumID" />
+          </Key>
+          <Property Name="yorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="siparisID" Type="int" />
+          <Property Name="yorum" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FRİENDYOL.dbo.wiew_fatura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wiew_fatura">
+          <Key>
+            <PropertyRef Name="faturaID" />
+          </Key>
+          <Property Name="faturaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="siparisID" Type="int" />
+          <Property Name="firmaID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="FRİENDYOLModelStoreContainer">
+          <EntitySet Name="fatura" EntityType="Self.fatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="firma_Bilgisi" EntityType="Self.firma_Bilgisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kargo" EntityType="Self.kargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kategori" EntityType="Self.kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="marka" EntityType="Self.marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="musteri" EntityType="Self.musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siparis" EntityType="Self.siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="urun" EntityType="Self.urun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yorumlar" EntityType="Self.yorumlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_firma_Bilgisi" EntityType="Self.view_firma_Bilgisi" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_firma_Bilgisi].[firmaID] AS [firmaID], 
+    [view_firma_Bilgisi].[ad_soyad] AS [ad_soyad], 
+    [view_firma_Bilgisi].[adres] AS [adres], 
+    [view_firma_Bilgisi].[telefon] AS [telefon], 
+    [view_firma_Bilgisi].[e_mail] AS [e_mail]
+    FROM [dbo].[view_firma_Bilgisi] AS [view_firma_Bilgisi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_kargo" EntityType="Self.view_kargo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_kargo].[kargoID] AS [kargoID], 
+    [view_kargo].[kargoAD] AS [kargoAD], 
+    [view_kargo].[kargoTEL] AS [kargoTEL]
+    FROM [dbo].[view_kargo] AS [view_kargo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_kategori" EntityType="Self.view_kategori" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_kategori].[kategoriID] AS [kategoriID], 
+    [view_kategori].[kategoriAD] AS [kategoriAD]
+    FROM [dbo].[view_kategori] AS [view_kategori]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_marka" EntityType="Self.view_marka" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_marka].[markaID] AS [markaID], 
+    [view_marka].[markaAD] AS [markaAD]
+    FROM [dbo].[view_marka] AS [view_marka]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_musteri" EntityType="Self.view_musteri" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_musteri].[musteriID] AS [musteriID], 
+    [view_musteri].[adSoyad] AS [adSoyad], 
+    [view_musteri].[ulke] AS [ulke], 
+    [view_musteri].[sehir] AS [sehir], 
+    [view_musteri].[adres] AS [adres], 
+    [view_musteri].[telefon] AS [telefon], 
+    [view_musteri].[e_mail] AS [e_mail], 
+    [view_musteri].[is_Admin] AS [is_Admin]
+    FROM [dbo].[view_musteri] AS [view_musteri]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_siparis" EntityType="Self.view_siparis" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_siparis].[siparisID] AS [siparisID], 
+    [view_siparis].[urunID] AS [urunID], 
+    [view_siparis].[musteriID] AS [musteriID], 
+    [view_siparis].[adet] AS [adet]
+    FROM [dbo].[view_siparis] AS [view_siparis]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_urun" EntityType="Self.view_urun" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_urun].[urunID] AS [urunID], 
+    [view_urun].[kategoriID] AS [kategoriID], 
+    [view_urun].[urunAD] AS [urunAD], 
+    [view_urun].[markaID] AS [markaID], 
+    [view_urun].[fiyat] AS [fiyat], 
+    [view_urun].[stok] AS [stok], 
+    [view_urun].[acıklama] AS [acıklama]
+    FROM [dbo].[view_urun] AS [view_urun]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_yorumlar" EntityType="Self.view_yorumlar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_yorumlar].[yorumID] AS [yorumID], 
+    [view_yorumlar].[siparisID] AS [siparisID], 
+    [view_yorumlar].[yorum] AS [yorum]
+    FROM [dbo].[view_yorumlar] AS [view_yorumlar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wiew_fatura" EntityType="Self.wiew_fatura" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wiew_fatura].[faturaID] AS [faturaID], 
+    [wiew_fatura].[musteriID] AS [musteriID], 
+    [wiew_fatura].[siparisID] AS [siparisID], 
+    [wiew_fatura].[firmaID] AS [firmaID]
+    FROM [dbo].[wiew_fatura] AS [wiew_fatura]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FRİENDYOLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="fatura">
+          <Key>
+            <PropertyRef Name="faturaID" />
+          </Key>
+          <Property Name="faturaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="siparisID" Type="Int32" />
+          <Property Name="firmaID" Type="Int32" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="markaAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="FRİENDYOLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fatura" EntityType="Self.fatura" />
+          <EntitySet Name="marka" EntityType="Self.marka" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="view_marka" EntityType="FRİENDYOLModel.view_marka" />
+          <EntitySet Name="wiew_fatura" EntityType="FRİENDYOLModel.wiew_fatura" />
+          <EntitySet Name="siparis" EntityType="FRİENDYOLModel.siparis" />
+          <EntitySet Name="view_siparis" EntityType="FRİENDYOLModel.view_siparis" />
+          <EntitySet Name="kategori" EntityType="FRİENDYOLModel.kategori" />
+          <EntitySet Name="urun" EntityType="FRİENDYOLModel.urun" />
+          <EntitySet Name="view_kategori" EntityType="FRİENDYOLModel.view_kategori" />
+          <EntitySet Name="view_urun" EntityType="FRİENDYOLModel.view_urun" />
+          <EntitySet Name="kargo" EntityType="FRİENDYOLModel.kargo" />
+          <EntitySet Name="view_kargo" EntityType="FRİENDYOLModel.view_kargo" />
+          <EntitySet Name="yorumlar" EntityType="FRİENDYOLModel.yorumlar" />
+          <EntitySet Name="view_yorumlar" EntityType="FRİENDYOLModel.view_yorumlar" />
+          <EntitySet Name="firma_Bilgisi" EntityType="FRİENDYOLModel.firma_Bilgisi" />
+          <EntitySet Name="view_firma_Bilgisi" EntityType="FRİENDYOLModel.view_firma_Bilgisi" />
+          <EntitySet Name="musteri" EntityType="FRİENDYOLModel.musteri" />
+          <EntitySet Name="view_musteri" EntityType="FRİENDYOLModel.view_musteri" />
+        </EntityContainer>
+        <EntityType Name="view_marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="markaAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wiew_fatura">
+          <Key>
+            <PropertyRef Name="faturaID" />
+          </Key>
+          <Property Name="faturaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="siparisID" Type="Int32" />
+          <Property Name="firmaID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="adet" Type="Int32" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="adet" Type="Int32" />
+        </EntityType>
+        <EntityType Name="kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriID" Type="Int32" />
+          <Property Name="urunAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="markaID" Type="Int32" />
+          <Property Name="fiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="stok" Type="Int32" />
+          <Property Name="acıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="view_urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriID" Type="Int32" />
+          <Property Name="urunAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="markaID" Type="Int32" />
+          <Property Name="fiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="stok" Type="Int32" />
+          <Property Name="acıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="kargo">
+          <Key>
+            <PropertyRef Name="kargoID" />
+          </Key>
+          <Property Name="kargoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kargoAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kargoTEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_kargo">
+          <Key>
+            <PropertyRef Name="kargoID" />
+          </Key>
+          <Property Name="kargoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kargoAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kargoTEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="yorumlar">
+          <Key>
+            <PropertyRef Name="yorumID" />
+          </Key>
+          <Property Name="yorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="siparisID" Type="Int32" />
+          <Property Name="yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_yorumlar">
+          <Key>
+            <PropertyRef Name="yorumID" />
+          </Key>
+          <Property Name="yorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="siparisID" Type="Int32" />
+          <Property Name="yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="firma_Bilgisi">
+          <Key>
+            <PropertyRef Name="firmaID" />
+          </Key>
+          <Property Name="firmaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_firma_Bilgisi">
+          <Key>
+            <PropertyRef Name="firmaID" />
+          </Key>
+          <Property Name="firmaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ulke" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_Admin" Type="Int32" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="is_flag" Type="Byte" />
+        </EntityType>
+        <EntityType Name="view_musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ulke" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_Admin" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FRİENDYOLModelStoreContainer" CdmEntityContainer="FRİENDYOLEntities">
+          <EntitySetMapping Name="fatura">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.fatura">
+              <MappingFragment StoreEntitySet="fatura">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="faturaID" ColumnName="faturaID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marka">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.marka">
+              <MappingFragment StoreEntitySet="marka">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+                <ScalarProperty Name="markaAD" ColumnName="markaAD" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_marka">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_marka">
+              <MappingFragment StoreEntitySet="view_marka">
+                <ScalarProperty Name="markaAD" ColumnName="markaAD" />
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wiew_fatura">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.wiew_fatura">
+              <MappingFragment StoreEntitySet="wiew_fatura">
+                <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="faturaID" ColumnName="faturaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siparis">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.siparis">
+              <MappingFragment StoreEntitySet="siparis">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_siparis">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_siparis">
+              <MappingFragment StoreEntitySet="view_siparis">
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kategori">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.kategori">
+              <MappingFragment StoreEntitySet="kategori">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="kategoriAD" ColumnName="kategoriAD" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="urun">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.urun">
+              <MappingFragment StoreEntitySet="urun">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="acıklama" ColumnName="acıklama" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+                <ScalarProperty Name="urunAD" ColumnName="urunAD" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_kategori">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_kategori">
+              <MappingFragment StoreEntitySet="view_kategori">
+                <ScalarProperty Name="kategoriAD" ColumnName="kategoriAD" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_urun">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_urun">
+              <MappingFragment StoreEntitySet="view_urun">
+                <ScalarProperty Name="acıklama" ColumnName="acıklama" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+                <ScalarProperty Name="urunAD" ColumnName="urunAD" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kargo">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.kargo">
+              <MappingFragment StoreEntitySet="kargo">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="kargoTEL" ColumnName="kargoTEL" />
+                <ScalarProperty Name="kargoAD" ColumnName="kargoAD" />
+                <ScalarProperty Name="kargoID" ColumnName="kargoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_kargo">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_kargo">
+              <MappingFragment StoreEntitySet="view_kargo">
+                <ScalarProperty Name="kargoTEL" ColumnName="kargoTEL" />
+                <ScalarProperty Name="kargoAD" ColumnName="kargoAD" />
+                <ScalarProperty Name="kargoID" ColumnName="kargoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yorumlar">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.yorumlar">
+              <MappingFragment StoreEntitySet="yorumlar">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="yorum" ColumnName="yorum" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="yorumID" ColumnName="yorumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_yorumlar">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_yorumlar">
+              <MappingFragment StoreEntitySet="view_yorumlar">
+                <ScalarProperty Name="yorum" ColumnName="yorum" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="yorumID" ColumnName="yorumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="firma_Bilgisi">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.firma_Bilgisi">
+              <MappingFragment StoreEntitySet="firma_Bilgisi">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_firma_Bilgisi">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_firma_Bilgisi">
+              <MappingFragment StoreEntitySet="view_firma_Bilgisi">
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="firmaID" ColumnName="firmaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="musteri">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.musteri">
+              <MappingFragment StoreEntitySet="musteri">
+                <ScalarProperty Name="is_flag" ColumnName="is_flag" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="is_Admin" ColumnName="is_Admin" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="sehir" ColumnName="sehir" />
+                <ScalarProperty Name="ulke" ColumnName="ulke" />
+                <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_musteri">
+            <EntityTypeMapping TypeName="FRİENDYOLModel.view_musteri">
+              <MappingFragment StoreEntitySet="view_musteri">
+                <ScalarProperty Name="is_Admin" ColumnName="is_Admin" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="sehir" ColumnName="sehir" />
+                <ScalarProperty Name="ulke" ColumnName="ulke" />
+                <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
